@@ -125,7 +125,6 @@ module.exports={
 		});
 	},
 	viewSections: function(user_id, callback){
-		
 		var sql="select * from courseFaculty, courses where courseFaculty.course_id=courses.course_id and faculty_id=(SELECT user_id FROM user where username=?)";
 		db.getResults(sql, [user_id], function(result){
 
@@ -138,6 +137,14 @@ module.exports={
 			}
 		});
 	},
+
+	applyCourses : function(user, callback){
+		var sql = "insert into coursefaculty values ('', ?, (SELECT user_id from user where username=?))";
+		db.execute(sql, [user.course_id, user.faculty_id], function(status){
+			callback(status);
+		});
+	},
+
 }
 
 

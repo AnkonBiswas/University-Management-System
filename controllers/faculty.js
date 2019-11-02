@@ -3,6 +3,15 @@ var userModel = require('./../models/user-model');
 
 var router = express.Router();
 
+router.get('/', function(req, res){
+	var faculty_id= req.cookies['faculty_id'];
+	console.log(faculty_id);
+	userModel.getByName(faculty_id, function(result){
+		//console.log(result);
+		res.render('faculty/index', {user: result});
+	});
+});
+
 router.get('/view_students/:course_id', function(req, res){
     //res.render('courses/index');
     var course_id=req.params.course_id;
@@ -50,20 +59,28 @@ router.get('/sections', function(req, res){
 	var faculty_id= req.cookies['faculty_id'];
 	console.log(faculty_id);
 	userModel.viewSections(faculty_id, function(result){
-		console.log(result);
+		//console.log(result);
 		res.render('faculty/faculty_sections', {user: result});
 	});
 });
 
-
-router.get('/', function(req, res){
+router.get('/apply_course/:course_id', function(req, res){
 	var faculty_id= req.cookies['faculty_id'];
-	console.log(faculty_id);
-	userModel.getByName(faculty_id, function(result){
-		//console.log(result);
-		res.render('faculty/index', {user: result});
+	var user = {
+		course_id: req.params.course_id,
+		faculty_id: faculty_id
+	};
+
+	userModel.applyCourses(user,function(status){
+		if (status){
+			res.redirect('/faculty/sections');
+		}
+		else res.redirect('/faculty');
 	});
+	
 });
+
+
 
 
 module.exports = router;

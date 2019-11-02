@@ -8,6 +8,8 @@ var home  		= require('./controllers/home');
 var user  		= require('./controllers/user');
 var login  		= require('./controllers/login');
 var register  	= require('./controllers/register');
+var courses  	= require('./controllers/courses');
+var faculty  	= require('./controllers/faculty');
 var logout  	= require('./controllers/logout');
 var app 		= express();
 
@@ -23,6 +25,8 @@ app.use('/user', user);
 app.use('/login', login);
 app.use('/logout', logout);
 app.use('/register', register);
+app.use('/courses', courses);
+app.use('/faculty', faculty);
 app.use(express.static(__dirname + '/public'));
 
 //ROUTING
