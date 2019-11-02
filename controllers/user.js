@@ -43,20 +43,20 @@ router.post('/adduser', function(req, res){
 	});
 });
 
-router.get('/edit/:id', function(req, res){
-
-	userModel.getById(req.params.id, function(results){
-		res.render('user/edit', {user: results[0]});		
+router.get('/edit/:user_id', function(req, res){
+	console.log(req.params.user_id);
+	userModel.getById(req.params.user_id, function(results){
+		res.render('user/edit', {user: results});		
 	});
 
 });
 
-router.post('/edit/:id', function(req, res){
+router.post('/edit/:user_id', function(req, res){
 	
 	var user = {
 		username: req.body.username,
 		password: req.body.password,
-		id: req.params.id
+		user_id: req.params.user_id
 	};
 
 	userModel.update(user, function(status){
@@ -69,12 +69,24 @@ router.post('/edit/:id', function(req, res){
 	});
 });
 
-router.get('/details/:id', function(req, res){
+router.get('/details/:user_id', function(req, res){
 
-	userModel.getById(req.params.id, function(result){
-		console.log(result);
+	userModel.getById(req.params.user_id, function(result){
+		//console.log(result);
 		res.render('user/details', {user: result});
 	});
 });
+///////////////////
 
+/*router.get('/courses', function(req, res){
+
+	userModel.getCourse(function(results){
+		if(req.cookies['username'] != null){
+			res.render('/courses', {user: results});
+		}else{
+			res.redirect('/login');
+		}
+	});
+});
+*/
 module.exports = router;

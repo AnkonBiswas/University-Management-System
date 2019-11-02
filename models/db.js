@@ -6,7 +6,7 @@ var getConnection = function(){
 		host:'localhost',
 		user: 'root',
 		password: '',
-		database: 'node1'
+		database: 'ums'
 	});
 	 
 	connection.connect(function(err) {
