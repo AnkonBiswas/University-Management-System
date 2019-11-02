@@ -11,6 +11,8 @@ var register  	= require('./controllers/register');
 var courses  	= require('./controllers/courses');
 var faculty  	= require('./controllers/faculty');
 var logout  	= require('./controllers/logout');
+var admin_login  		= require('./controllers/admin_login');
+
 var app 		= express();
 
 //CONGIFURATION
@@ -26,7 +28,10 @@ app.use('/login', login);
 app.use('/logout', logout);
 app.use('/register', register);
 app.use('/courses', courses);
-app.use('/faculty', faculty);
+app.use('/admin', admin_login);
+
+app.use('/courses', courses);
+
 app.use(express.static(__dirname + '/public'));
 
 //ROUTING

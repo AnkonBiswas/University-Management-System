@@ -4,7 +4,7 @@ module.exports={
 
 	getById: function(user_id, callback){
 
-		var sql = "select * from user where user_id=?";
+		var sql = "select * from admin where name=?";
 		db.getResults(sql, [user_id], function(result){
 
 			//ffconsole.log(result);
@@ -18,9 +18,9 @@ module.exports={
 	},
 	
 	validate: function(user, callback){
-		var sql = "select * from user where username=? and password=?";
+		var sql = "select * from admin where name=? and password=?";
 
-		db.getResults(sql, [user.username, user.password], function(result){
+		db.getResults(sql, [user.name, user.password], function(result){
 
 			if(result.length > 0 ) {
 				callback(true);
@@ -30,7 +30,7 @@ module.exports={
 		});
 	},
 	getAll : function(callback){
-		var sql = "select * from user";
+		var sql = "select * from admin";
 
 		db.getResults(sql, [], function(results){
 
@@ -42,13 +42,13 @@ module.exports={
 		});
 	},
 	insert : function(user, callback){
-		var sql = "insert into user values('', ?, ?)";
+		var sql = "insert into admin values('', ?, ?)";
 		db.execute(sql, [user.username, user.password], function(status){
 			callback(status);
 		});
 	},
 	update : function(user, callback){
-		var sql = "update user set username=?, password=? where user_id=?";		
+		var sql = "update admin set username=?, password=? where user_id=?";		
 			db.execute(sql, [user.username, user.password, user.user_id], function(status){
 				callback(status);
 			});

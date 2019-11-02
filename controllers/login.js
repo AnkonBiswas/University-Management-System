@@ -1,10 +1,10 @@
 var express = require('express');
-var userModel = require('./../admin/models/user-model');
+var userModel = require('./../models/user-model');
 
 var router = express.Router();
 
 router.get('/', function(req, res){
-	res.render('admin/login/index');
+	res.render('login/index');
 });
 
 router.post('/', function(req, res){
@@ -18,7 +18,7 @@ router.post('/', function(req, res){
 		
 		if(status){
 			res.cookie('username', req.body.username);
-			res.redirect('/dashboard');	
+			res.redirect('/faculty');	
 		}else{
 			res.send('invalid username/password');
 		}
