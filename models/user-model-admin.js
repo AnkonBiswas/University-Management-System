@@ -16,6 +16,74 @@ module.exports={
 			}
 		});
 	},
+
+
+	getByFaculty: function(user_id, callback){
+
+		var sql = "select * from user where user_id=?";
+		db.getResults(sql, [user_id], function(result){
+
+			//ffconsole.log(result);
+			if(result.length > 0 ){
+				callback(result);
+				console.log(result);
+			}else{
+				callback([]);
+			}
+		});
+	},
+
+
+	getByStudent: function(user_id, callback){
+
+		var sql = "select * from student where id=?";
+		db.getResults(sql, [user_id], function(result){
+
+			//ffconsole.log(result);
+			if(result.length > 0 ){
+				callback(result);
+				console.log(result);
+			}else{
+				callback([]);
+			}
+		});
+	},
+
+
+	updateFaculty : function(user, callback){
+		var sql = "update user set username=?, password=?, full_name=? where user_id=?";		
+			db.execute(sql, [user.username, user.password, user.user_id, user.full_name], function(status){
+				callback(status);
+			});
+		
+	},
+
+	updateStudent : function(user, callback){
+		var sql = "update student set username=?, password=? where id=?";		
+			db.execute(sql, [user.username, user.password, user.user_id], function(status){
+				callback(status);
+			});
+		
+	},
+
+
+	insertFaculty : function(user, callback){
+		var sql = "insert into user values('', ?, ?, ?,'','')";
+		db.execute(sql, [user.username, user.password,user.full_name], function(status){
+			callback(status);
+		});
+	},
+
+
+	insertStudent : function(user, callback){
+		var sql = "insert into student values('', ?, ?)";
+		db.execute(sql, [user.username, user.password], function(status){
+			callback(status);
+		});
+	},
+
+
+
 	
 	validate: function(user, callback){
 		var sql = "select * from admin where name=? and password=?";
@@ -61,8 +129,8 @@ module.exports={
 		});
 	},
 	/////////////////////////
-	getCourse :  function(callback){
-		var sql = "select * from courses";
+	getFaculty :  function(callback){
+		var sql = "select * from user";
 
 		db.getResults(sql, [], function(results){
 
@@ -71,6 +139,34 @@ module.exports={
 			}else{
 				callback([]);
 			}
+		});
+	},
+
+	getStudent :  function(callback){
+		var sql = "select * from student";
+
+		db.getResults(sql, [], function(results){
+
+			if(results.length > 0 ) {
+				callback(results);
+			}else{
+				callback([]);
+			}
+		});
+	},
+
+	deleteFaculty : function(user_id, callback){
+		var sql = "DELETE FROM faculty WHERE id=?";
+		db.execute(sql,[user_id],  function(status){
+			callback(status);
+		});
+	},
+
+
+	deleteStudent : function(user_id, callback){
+		var sql = "DELETE FROM student WHERE id=?";
+		db.execute(sql,[user_id],  function(status){
+			callback(status);
 		});
 	},
 
@@ -141,6 +237,64 @@ module.exports={
 	applyCourses : function(user, callback){
 		var sql = "insert into coursefaculty values ('', ?, (SELECT user_id from user where username=?))";
 		db.execute(sql, [user.course_id, user.faculty_id], function(status){
+			callback(status);
+		});
+	},
+
+
+	// Course
+
+
+	getByCourse: function(user_id, callback){
+
+		var sql = "select * from courses where course_id=?";
+		db.getResults(sql, [user_id], function(result){
+
+			//ffconsole.log(result);
+			if(result.length > 0 ){
+				callback(result);
+				console.log(result);
+			}else{
+				callback([]);
+			}
+		});
+	},
+
+
+	updateCourse : function(user, callback){
+		var sql = "update courses set username=?, password=? where course_id=?";		
+			db.execute(sql, [user.username, user.password, user.user_id], function(status){
+				callback(status);
+			});
+		
+	},
+
+
+insertCourse : function(user, callback){
+		var sql = "insert into courses values('', ?, ?)";
+		db.execute(sql, [user.username, user.password], function(status){
+			callback(status);
+		});
+	},
+
+
+	getCourse :  function(callback){
+		var sql = "select * from courses";
+
+		db.getResults(sql, [], function(results){
+
+			if(results.length > 0 ) {
+				callback(results);
+			}else{
+				callback([]);
+			}
+		});
+	},
+
+
+	deleteCourse : function(user_id, callback){
+		var sql = "DELETE FROM courses WHERE course_id=?";
+		db.execute(sql,[user_id],  function(status){
 			callback(status);
 		});
 	},

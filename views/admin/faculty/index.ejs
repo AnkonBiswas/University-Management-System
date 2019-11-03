@@ -1,0 +1,45 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>
+        
+    </title>
+</head>
+<body>
+<h1>Faculty</h1>
+
+<a href="/admin/addfaculty">Add Faculty</a><br>
+<table border="1">
+    <tr>
+        <td>z ID</td>
+        <td>Faculty NAME</td>
+        <td>Username</td>
+        <td>Gender</td>
+        <td>Contact</td>
+        <td>Edit</td>
+        <td>Delete</td>
+    </tr>
+
+<% for(var i=0; i< user.length; i++){ %>
+    <tr>
+        <td><%= user[i].user_id %></td>
+        <td><%= user[i].full_name %></td>
+        <td><%= user[i].username %></td>
+        <td><%= user[i].gender %></td>
+        <td><%= user[i].contact %></td>
+        <td>
+            <a href="/admin/faculty_edit/<%= user[i].user_id %>">Edit Faculty</a>
+            
+        </td>
+        <td>
+            <a href="/admin/faculty_delete/<%= user[i].user_id %>"> Delete Faculty </a>
+            
+        </td>
+    </tr>
+
+<% } %>
+</table>
+</body>
+</html>
+

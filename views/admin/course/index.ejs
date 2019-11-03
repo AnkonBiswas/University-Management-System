@@ -1,0 +1,47 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>
+        
+    </title>
+</head>
+<body>
+<h1>Course</h1>
+
+<a href="/admin/addcourse">Add Course</a><br>
+<table border="1">
+    <tr>
+        <td>ID</td>
+        <td>Name</td>
+         <td>Section</td>
+          <td>Seats</td>
+          <td>Category</td>
+          
+
+        <td>Edit</td>
+        <td>Delete</td>
+    </tr>
+
+<% for(var i=0; i< user.length; i++){ %>
+    <tr>
+        <td><%= user[i].course_id %></td>
+        <td><%= user[i].course_name %></td>
+        <td><%= user[i].section %></td>
+                <td><%= user[i].seats %></td>
+<td><%= user[i].category %></td>
+        <td>
+            <a href="/admin/course_edit/<%= user[i].id %>">Edit Course</a>
+            
+        </td>
+        <td>
+            <a href="/admin/course_delete/<%= user[i].id %>"> Delete Course </a>
+            
+        </td>
+    </tr>
+
+<% } %>
+</table>
+</body>
+</html>
+
