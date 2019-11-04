@@ -145,6 +145,16 @@ module.exports={
 		});
 	},
 
+	
+	changePassword : function(user, callback){
+
+		//console.log(user);
+		var sql = "update user set password=? where username=?";		
+		db.execute(sql, [user.password, user.faculty_id], function(status){
+			callback(status);
+		});
+		},
+
 }
 
 

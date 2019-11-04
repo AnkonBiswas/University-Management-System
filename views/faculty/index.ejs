@@ -1,20 +1,22 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>userlist</title>
+	<title>PROFILE</title>
 </head>
 <body>
-	<h1>Details </h1>
+	<h1>PROFILE </h1>
 
 	<a href="/faculty/sections">VIEW SECTIONS</a> |
-	<a href="/logout">logout</a>
+	<a href="/courses">COURSES</a> | 
+	<a href="/logout">LOGOUT</a> | 
+	<a href="/faculty/change_password">CHANGE PASSWORD</a> | 
 
 <br><br>
 
 <form method="post">
 	<table border="0">
 		<tr>
-			<td>Username :</td>
+			<td>USERNAME :</td>
 			<td><%= user[0].username %></td>
 		</tr>
 		<tr>
@@ -22,15 +24,15 @@
 			<td><%= user[0].password %></td>
         </tr>
         <tr>
-			<td>Full_name :</td>
+			<td>FULL NAME :</td>
 			<td><%= user[0].full_name %></td>
 		</tr>
 		<tr>
-			<td>Gender :</td>
+			<td>GENDER :</td>
 			<td><%= user[0].gender %></td>
         </tr>
         <tr>
-			<td>Contact :</td>
+			<td>CONTACT :</td>
 			<td><%= user[0].contact %></td>
 		</tr>
 		
