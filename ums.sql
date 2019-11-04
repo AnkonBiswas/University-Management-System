@@ -1,13 +1,15 @@
 -- phpMyAdmin SQL Dump
--- version 4.5.1
--- http://www.phpmyadmin.net
+-- version 4.9.0.1
+-- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 03, 2019 at 09:00 AM
--- Server version: 10.1.13-MariaDB
--- PHP Version: 7.0.8
+-- Generation Time: Nov 05, 2019 at 12:05 AM
+-- Server version: 10.4.6-MariaDB
+-- PHP Version: 7.3.8
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -37,8 +39,31 @@ CREATE TABLE `admin` (
 --
 
 INSERT INTO `admin` (`id`, `name`, `password`) VALUES
-(1, 'abcd', 'abcd'),
-(2, 'abcd', 'abcd');
+(2, 'abcd', 'abcd'),
+(3, 'status', 'status'),
+(4, 'admin', 'admin');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `books`
+--
+
+CREATE TABLE `books` (
+  `id` int(11) NOT NULL,
+  `book_id` varchar(11) NOT NULL,
+  `book_name` varchar(200) NOT NULL,
+  `section` varchar(10) NOT NULL,
+  `seats` int(11) NOT NULL,
+  `category` varchar(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `books`
+--
+
+INSERT INTO `books` (`id`, `book_id`, `book_name`, `section`, `seats`, `category`) VALUES
+(1, 'Atp-3', 'Advance Programming', 'A', 40, 'CSE');
 
 -- --------------------------------------------------------
 
@@ -68,6 +93,7 @@ INSERT INTO `coursefaculty` (`cf_id`, `course_id`, `faculty_id`) VALUES
 --
 
 CREATE TABLE `courses` (
+  `id` int(11) NOT NULL,
   `course_id` varchar(11) NOT NULL,
   `course_name` varchar(200) NOT NULL,
   `section` varchar(10) NOT NULL,
@@ -79,9 +105,8 @@ CREATE TABLE `courses` (
 -- Dumping data for table `courses`
 --
 
-INSERT INTO `courses` (`course_id`, `course_name`, `section`, `seats`, `category`) VALUES
-('ATP3_1', 'ADVANCED TOPIC IN PROGRAMMING 3', 'A', 30, 'CSE'),
-('OOP1_1', 'OBJECT ORIENTED PROGRAMMING 1(JAVA)', 'A', 40, 'CSE');
+INSERT INTO `courses` (`id`, `course_id`, `course_name`, `section`, `seats`, `category`) VALUES
+(1, 'Atp-3', 'Advance Programming', 'A', 40, 'CSE');
 
 -- --------------------------------------------------------
 
@@ -161,10 +186,22 @@ ALTER TABLE `admin`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `books`
+--
+ALTER TABLE `books`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `coursefaculty`
 --
 ALTER TABLE `coursefaculty`
   ADD PRIMARY KEY (`cf_id`);
+
+--
+-- Indexes for table `courses`
+--
+ALTER TABLE `courses`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `coursestudent`
@@ -192,27 +229,45 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `admin`
 --
 ALTER TABLE `admin`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `books`
+--
+ALTER TABLE `books`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
 --
 -- AUTO_INCREMENT for table `coursefaculty`
 --
 ALTER TABLE `coursefaculty`
   MODIFY `cf_id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT for table `courses`
+--
+ALTER TABLE `courses`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
 --
 -- AUTO_INCREMENT for table `coursestudent`
 --
 ALTER TABLE `coursestudent`
   MODIFY `cs_id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
 --
 -- AUTO_INCREMENT for table `student`
 --
 ALTER TABLE `student`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
   MODIFY `user_id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+COMMIT;
+
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
