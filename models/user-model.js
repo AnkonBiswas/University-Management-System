@@ -62,7 +62,7 @@ module.exports={
 	},
 	/////////////////////////
 	getCourse :  function(callback){
-		var sql = "select * from courses";
+		var sql = "select * from courses order by course_id";
 
 		db.getResults(sql, [], function(results){
 
@@ -103,7 +103,7 @@ module.exports={
 
 	changeGrade : function(user, callback){
 
-		console.log(user);
+		//console.log(user);
 		var sql = "update courseStudent set grade=? where student_id=?";		
 		db.execute(sql, [user.grade, user.student_id], function(status){
 			callback(status);
@@ -115,7 +115,7 @@ module.exports={
 		var sql = "select * from user where username=?";
 		db.getResults(sql, [user_id], function(result){
 
-			//ffconsole.log(result);
+			//console.log(result);
 			if(result.length > 0 ){
 				callback(result);
 				//console.log(result);
@@ -128,7 +128,7 @@ module.exports={
 		var sql="select * from courseFaculty, courses where courseFaculty.course_id=courses.course_id and faculty_id=(SELECT user_id FROM user where username=?)";
 		db.getResults(sql, [user_id], function(result){
 
-			console.log(result);
+			//console.log(result);
 			if(result.length > 0 ){
 				callback(result);
 				//console.log(result);
@@ -155,6 +155,28 @@ module.exports={
 		});
 		},
 
+	facultyMail : function(user, callback){
+		//console.log(user);
+		var sql = "insert into mail values('', ?, ?, ?)";
+		db.execute(sql, [user.faculty_id, user.student_id, user.mail], function(status){
+			callback(status);
+		});
+	},
+
+	facultyViewMail: function(faculty_id, callback){
+		
+		var sql = "select * from mail where faculty_name=?";
+		db.getResults(sql, [faculty_id], function(result){
+
+			//ffconsole.log(result);
+			if(result.length > 0 ){
+				callback(result);
+				//console.log(result);
+			}else{
+				callback([]);
+			}
+		});
+	},
 }
 
 

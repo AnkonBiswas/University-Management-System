@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 02, 2019 at 04:25 PM
+-- Generation Time: Nov 04, 2019 at 08:23 PM
 -- Server version: 10.1.25-MariaDB
 -- PHP Version: 5.6.31
 
@@ -25,6 +25,25 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `admin`
+--
+
+CREATE TABLE `admin` (
+  `id` int(11) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `password` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `admin`
+--
+
+INSERT INTO `admin` (`id`, `name`, `password`) VALUES
+(1, 'abcd', 'abcd');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `coursefaculty`
 --
 
@@ -40,8 +59,7 @@ CREATE TABLE `coursefaculty` (
 
 INSERT INTO `coursefaculty` (`cf_id`, `course_id`, `faculty_id`) VALUES
 (1, 'ATP3_1', '4'),
-(2, 'OOP1_1', '4'),
-(5, 'ATP3_1', '4');
+(2, 'OOP1_1', '4');
 
 -- --------------------------------------------------------
 
@@ -63,7 +81,9 @@ CREATE TABLE `courses` (
 
 INSERT INTO `courses` (`course_id`, `course_name`, `section`, `seats`, `category`) VALUES
 ('ATP3_1', 'ADVANCED TOPIC IN PROGRAMMING 3', 'A', 30, 'CSE'),
-('OOP1_1', 'OBJECT ORIENTED PROGRAMMING 1(JAVA)', 'A', 40, 'CSE');
+('OOP1_1', 'OBJECT ORIENTED PROGRAMMING 1(JAVA)', 'A', 40, 'CSE'),
+('ATP3_2', 'ADVANCED TOPIC IN PROGRAMMING', 'B', 30, 'CSE'),
+('TC_1', 'TELECOMMUNICATION ENGINEERING', 'A', 40, 'EEE');
 
 -- --------------------------------------------------------
 
@@ -83,8 +103,29 @@ CREATE TABLE `coursestudent` (
 --
 
 INSERT INTO `coursestudent` (`cs_id`, `course_id`, `student_id`, `grade`) VALUES
-(1, 'ATP3_1', 1, NULL),
+(1, 'ATP3_1', 1, 'A+'),
 (2, 'ATP3_1', 2, 'A');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `mail`
+--
+
+CREATE TABLE `mail` (
+  `mail_id` int(20) NOT NULL,
+  `faculty_name` varchar(100) NOT NULL,
+  `student_id` int(100) NOT NULL,
+  `mail` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `mail`
+--
+
+INSERT INTO `mail` (`mail_id`, `faculty_name`, `student_id`, `mail`) VALUES
+(4, 'faculty', 2, 'hello'),
+(5, 'faculty', 2, 'hello');
 
 -- --------------------------------------------------------
 
@@ -116,6 +157,12 @@ INSERT INTO `user` (`user_id`, `username`, `password`, `full_name`, `gender`, `c
 --
 
 --
+-- Indexes for table `admin`
+--
+ALTER TABLE `admin`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `coursefaculty`
 --
 ALTER TABLE `coursefaculty`
@@ -128,6 +175,12 @@ ALTER TABLE `coursestudent`
   ADD PRIMARY KEY (`cs_id`);
 
 --
+-- Indexes for table `mail`
+--
+ALTER TABLE `mail`
+  ADD PRIMARY KEY (`mail_id`);
+
+--
 -- Indexes for table `user`
 --
 ALTER TABLE `user`
@@ -138,15 +191,25 @@ ALTER TABLE `user`
 --
 
 --
+-- AUTO_INCREMENT for table `admin`
+--
+ALTER TABLE `admin`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+--
 -- AUTO_INCREMENT for table `coursefaculty`
 --
 ALTER TABLE `coursefaculty`
-  MODIFY `cf_id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `cf_id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT for table `coursestudent`
 --
 ALTER TABLE `coursestudent`
   MODIFY `cs_id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+--
+-- AUTO_INCREMENT for table `mail`
+--
+ALTER TABLE `mail`
+  MODIFY `mail_id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `user`
 --
