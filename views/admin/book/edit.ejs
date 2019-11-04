@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>book</title>
+		<link rel="stylesheet" href="/css/uikit.min.css">
+
+</head>
+<body>
+<div class="uk-container">
+
+		<h1>Edit book</h1>
+
+	<a href="/admin/book" class="uk-button uk-button-default">Back</a> |
+	<a href="/admin/logout" class="uk-button uk-button-default">logout</a>
+<form method="post">
+	<table border="0">
+
+		<% for(var i=0; i< user.length; i++){ %>
+
+		<tr>
+			<input type="hidden" name="id" value="<%=user[i].book_id%>">
+			<td>book Id</td>
+			<td><input type="text" class="uk-input" name="book_id" value="<%=user[i].book_id%>"></td>
+		</tr>
+		<tr>
+			<td>book Name</td>
+			<td><input type="text" class="uk-input" name="book_name" value="<%=user[i].book_name%>"></td>
+		</tr>
+		<tr>
+			<td>Section</td>
+			<td><input type="text"  class="uk-input" name="section" value="<%=user[i].section%>"></td>
+		</tr>
+
+		<tr>
+			<td>Seats</td>
+			<td><input type="text" class="uk-input" name="seats" value="<%=user[i].seats%>"></td>
+		</tr>
+		<tr>
+			<td>Category</td>
+			<td><input type="text" class="uk-input" name="category" value="<%=user[i].category%>"></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td><input type="submit" class="uk-button uk-button-default" name="submit" value="Save"></td>
+		</tr>
+		<% } %>
+
+	</table>
+
+	</div>
+</form>
+</body>
+</html>

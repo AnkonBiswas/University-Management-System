@@ -6,14 +6,25 @@ var router = express.Router();
 router.get('/', function(req, res){
 
 	if (req.cookies['admin_id']) {
-		res.render('admin/dashboard/index');
+
+
+
+			res.render('admin/dashboard/index');
+
+		
+
+
+
+
+
+		
 
 	}else{
 		res.render('admin/login/index');
 	}
-
-	
 });
+	
+
 
 
 router.get('/login', function(req, res){
@@ -191,7 +202,7 @@ router.post('/addstudent', function(req, res){
 
 
 
-//student
+//Course
 
 router.get('/course', function(req, res){
 
@@ -265,6 +276,161 @@ router.post('/addcourse', function(req, res){
 		}
 	});
 });
+
+
+//Books
+
+
+router.get('/book', function(req, res){
+
+ userModel.getbook(function(results){
+		res.render('admin/book/index', {user: results});
+	});
+ });
+
+router.get('/book_delete/:id', function(req, res){
+
+ userModel.deletebook(req.params.id,function(status){
+		
+		if(status){
+				res.send('book Deleted');
+		}else{
+			res.send('Can not Delete');
+		}
+	});
+ });
+
+
+
+router.get('/book_edit/:user_id', function(req, res){
+	userModel.getBybook(req.params.user_id, function(results){
+		res.render('admin/book/edit', {user: results});		
+	});
+
+});
+
+router.post('/book_edit/:user_id', function(req, res){
+	
+	var user = {
+		book_id: req.body.book_id,
+		book_name: req.body.book_name,
+		section: req.body.section,
+		seats: req.body.seats,
+		category: req.body.category,
+		user_id: req.params.user_id
+	};
+
+	userModel.updatebook(user, function(status){
+
+		if(status){
+			res.redirect('/admin/book');
+		}else{
+			res.redirect('/admin/book');
+		}
+	});
+});
+
+
+router.get('/addbook', function(req, res){
+	res.render('admin/book/add');
+});
+
+router.post('/addbook', function(req, res){
+
+	var user = {
+		book_id: req.body.book_id,
+		book_name: req.body.book_name,
+		section: req.body.section,
+		seats: req.body.seats,
+		category: req.body.category
+	};
+
+	userModel.insertbook(user, function(status){
+		if(status){
+			res.redirect('/admin/book');
+		}else{
+			res.redirect('/admin/addbook');
+		}
+	});
+});
+
+
+
+router.get('/userlist', function(req, res){
+
+
+	 userModel.getAll(function(results){
+		res.render('admin/user/index', {user: results});
+	});
+
+		
+		
+	
+});
+
+
+router.get('/adduser', function(req, res){
+	res.render('admin/user/adduser');
+});
+
+router.post('/adduser', function(req, res){
+
+	var user = {
+		name: req.body.name,
+		password: req.body.password
+	};
+
+	userModel.insert(user, function(status){
+		if(status){
+			res.redirect('/admin/userlist');
+		}else{
+			res.redirect('/admin/adduser');
+		}
+	});
+});
+
+router.get('/edit/:user_id', function(req, res){
+	console.log(req.params.user_id);
+	userModel.getAdmin(req.params.user_id, function(results){
+		res.render('admin/user/edit', {user: results});		
+	});
+
+});
+
+router.post('/edit/:user_id', function(req, res){
+	
+	var user = {
+		username: req.body.name,
+		password: req.body.password,
+		user_id: req.params.user_id
+	};
+
+	userModel.update(user, function(status){
+
+		if(status){
+			res.redirect('/admin/userlist');
+		}else{
+			res.redirect('/admin/adduser');
+		}
+	});
+});
+
+router.get('/details/:user_id', function(req, res){
+
+	userModel.getAdmin(req.params.user_id, function(result){
+		//console.log(result);
+		res.render('admin/user/details', {user: result});
+	});
+});
+
+router.get('/delete/:user_id', function(req, res){
+
+	userModel.delete(req.params.user_id, function(result){
+		//console.log(result);
+		res.redirect('/admin/userlist');
+	});
+});
+
 
 router.get('/dashboard', function(req, res){
 	res.render('admin/dashboard/index');

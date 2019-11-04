@@ -1,15 +1,37 @@
 <html>
 	<head>
-		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
+<link rel="stylesheet" href="/css/uikit.min.css">
+<style>
+	.uk-child-width-1-3\@m>* {
+    margin: 10px;
+    width: calc(95% * 1 / 3.001);
+    float: left;
+}
+</style>
 	</head>
 	<body>
 
-		<div class="controller">
-			<div class="card" style="width: 18rem;">
-  <div class="card-body">
-    <h5 class="card-title">Faculty</h5>
-    <a href="/admin/faculty" class="btn btn-primary">Faculty</a>
+		<div class="uk-container">
+			<div class="uk-child-width-1-3@m">
+  <div class="uk-card uk-card-default uk-card-body">
+    <h5 class="uk-card-title">Faculty</h5>
+    <a href="/admin/faculty" class="uk-button uk-button-default">Faculty</a>
+  </div>
+   <div class="uk-card uk-card-default uk-card-body">
+    <h5 class="uk-card-title">Course</h5>
+    <a href="/admin/course" class="uk-button uk-button-default">Course</a>
+  </div>
+   <div class="uk-card uk-card-default uk-card-body">
+    <h5 class="uk-card-title">Student</h5>
+    <a href="/admin/student" class="uk-button uk-button-default">Student</a>
+  </div>
+   <div class="uk-card uk-card-default uk-card-body">
+    <h5 class="uk-card-title">Books</h5>
+    <a href="/admin/book" class="uk-button uk-button-default">Books</a>
+  </div>
+   <div class="uk-card uk-card-default uk-card-body">
+    <h5 class="uk-card-title">Manager</h5>
+    <a href="/admin/userlist" class="uk-button uk-button-default">Manager</a>
   </div>
 </div>
 		</div>

@@ -18,6 +18,23 @@ module.exports={
 	},
 
 
+	getAdmin: function(user_id, callback){
+
+		var sql = "select * from admin where id=?";
+		db.getResults(sql, [user_id], function(result){
+
+			//ffconsole.log(result);
+			if(result.length > 0 ){
+				callback(result);
+				console.log(result);
+			}else{
+				callback([]);
+			}
+		});
+	},
+
+
+
 	getByFaculty: function(user_id, callback){
 
 		var sql = "select * from user where user_id=?";
@@ -111,12 +128,12 @@ module.exports={
 	},
 	insert : function(user, callback){
 		var sql = "insert into admin values('', ?, ?)";
-		db.execute(sql, [user.username, user.password], function(status){
+		db.execute(sql, [user.name, user.password], function(status){
 			callback(status);
 		});
 	},
 	update : function(user, callback){
-		var sql = "update admin set username=?, password=? where user_id=?";		
+		var sql = "update admin set name=?, password=? where user_id=?";		
 			db.execute(sql, [user.username, user.password, user.user_id], function(status){
 				callback(status);
 			});
@@ -124,7 +141,8 @@ module.exports={
 	},
 	delete : function(user, callback){
 		//var sql = "insert into user values('','"+ user.username+"', '"+user.password+"')";
-		db.execute(sql, [],  function(status){
+		var sql = "DELETE FROM admin WHERE id=?";
+		db.execute(sql, [user],  function(status){
 			callback(status);
 		});
 	},
@@ -245,7 +263,7 @@ module.exports={
 	// Course
 
 
-	getByCourse: function(user_id, callback){
+getByCourse: function(user_id, callback){
 
 		var sql = "select * from courses where id=?";
 		db.getResults(sql, [user_id], function(result){
@@ -261,7 +279,7 @@ module.exports={
 	},
 
 
-	updateCourse : function(user, callback){
+updateCourse : function(user, callback){
 		var sql = "update courses set course_id=?, course_name=? , section=?, seats=?, category=? where id=?";		
 			db.execute(sql, [user.course_id, user.course_name, user.section, user.seats, user.category, user.user_id], function(status){
 				callback(status);
@@ -278,7 +296,7 @@ insertCourse : function(user, callback){
 	},
 
 
-	getCourse :  function(callback){
+getCourse :  function(callback){
 		var sql = "select * from courses";
 
 		db.getResults(sql, [], function(results){
@@ -292,7 +310,7 @@ insertCourse : function(user, callback){
 	},
 
 
-	deleteCourse : function(user_id, callback){
+deleteCourse : function(user_id, callback){
 		var sql = "DELETE FROM courses WHERE id=?";
 		db.execute(sql,[user_id],  function(status){
 			callback(status);
@@ -301,6 +319,74 @@ insertCourse : function(user, callback){
 
 
 	// Book
+
+	getBybook: function(user_id, callback){
+
+		var sql = "select * from books where id=?";
+		db.getResults(sql, [user_id], function(result){
+
+			//ffconsole.log(result);
+			if(result.length > 0 ){
+				callback(result);
+				console.log(result);
+			}else{
+				callback([]);
+			}
+		});
+	},
+
+
+updatebook : function(user, callback){
+		var sql = "update books set book_id=?, book_name=? , section=?, seats=?, category=? where id=?";		
+			db.execute(sql, [user.book_id, user.book_name, user.section, user.seats, user.category, user.user_id], function(status){
+				callback(status);
+			});
+		
+	},
+
+
+insertbook : function(user, callback){
+		var sql = "insert into books values('', ?, ?,?,?,?)";
+		db.execute(sql, [user.book_id, user.book_name, user.section, user.seats, user.category], function(status){
+			callback(status);
+		});
+	},
+
+
+getbook :  function(callback){
+		var sql = "select * from books";
+
+		db.getResults(sql, [], function(results){
+
+			if(results.length > 0 ) {
+				callback(results);
+			}else{
+				callback([]);
+			}
+		});
+	},
+
+
+deletebook : function(user_id, callback){
+		var sql = "DELETE FROM books WHERE id=?";
+		db.execute(sql,[user_id],  function(status){
+			callback(status);
+		});
+	},
+
+count : function(table_name, callback){
+		var sql = "SELECT count(*) as total from "+table_name;
+		console.log(sql);
+			db.getResults(sql, [], function(results){
+
+			if(results.length > 0 ) {
+				callback(results);
+				console.log(results);
+			}else{
+				callback([]);
+			}
+		});
+	},
 
 }
 
