@@ -247,7 +247,7 @@ module.exports={
 
 	getByCourse: function(user_id, callback){
 
-		var sql = "select * from courses where course_id=?";
+		var sql = "select * from courses where id=?";
 		db.getResults(sql, [user_id], function(result){
 
 			//ffconsole.log(result);
@@ -262,8 +262,8 @@ module.exports={
 
 
 	updateCourse : function(user, callback){
-		var sql = "update courses set username=?, password=? where course_id=?";		
-			db.execute(sql, [user.username, user.password, user.user_id], function(status){
+		var sql = "update courses set course_id=?, course_name=? , section=?, seats=?, category=? where id=?";		
+			db.execute(sql, [user.course_id, user.course_name, user.section, user.seats, user.category, user.user_id], function(status){
 				callback(status);
 			});
 		
@@ -271,8 +271,8 @@ module.exports={
 
 
 insertCourse : function(user, callback){
-		var sql = "insert into courses values('', ?, ?)";
-		db.execute(sql, [user.username, user.password], function(status){
+		var sql = "insert into courses values('', ?, ?,?,?,?)";
+		db.execute(sql, [user.course_id, user.course_name, user.section, user.seats, user.category], function(status){
 			callback(status);
 		});
 	},
@@ -293,11 +293,14 @@ insertCourse : function(user, callback){
 
 
 	deleteCourse : function(user_id, callback){
-		var sql = "DELETE FROM courses WHERE course_id=?";
+		var sql = "DELETE FROM courses WHERE id=?";
 		db.execute(sql,[user_id],  function(status){
 			callback(status);
 		});
 	},
+
+
+	// Book
 
 }
 

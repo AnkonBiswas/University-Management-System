@@ -216,7 +216,7 @@ router.get('/course_delete/:id', function(req, res){
 
 router.get('/course_edit/:user_id', function(req, res){
 	userModel.getByCourse(req.params.user_id, function(results){
-		res.render('admin/student/edit', {user: results});		
+		res.render('admin/course/edit', {user: results});		
 	});
 
 });
@@ -224,8 +224,11 @@ router.get('/course_edit/:user_id', function(req, res){
 router.post('/course_edit/:user_id', function(req, res){
 	
 	var user = {
-		username: req.body.username,
-		password: req.body.password,
+		course_id: req.body.course_id,
+		course_name: req.body.course_name,
+		section: req.body.section,
+		seats: req.body.seats,
+		category: req.body.category,
 		user_id: req.params.user_id
 	};
 
@@ -247,8 +250,11 @@ router.get('/addcourse', function(req, res){
 router.post('/addcourse', function(req, res){
 
 	var user = {
-		username: req.body.username,
-		password: req.body.password
+		course_id: req.body.course_id,
+		course_name: req.body.course_name,
+		section: req.body.section,
+		seats: req.body.seats,
+		category: req.body.category
 	};
 
 	userModel.insertCourse(user, function(status){

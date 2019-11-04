@@ -1,38 +1,53 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Student</title>
+	<title>Course</title>
+		<link rel="stylesheet" href="/css/uikit.min.css">
+
 </head>
 <body>
-	<h1>Edit Student</h1>
+<div class="uk-container">
 
-	<a href="/admin/faculty">Back</a> |
-	<a href="/admin/logout">logout</a>
+		<h1>Edit Course</h1>
 
-<br><br>
-
+	<a href="/admin/faculty" class="uk-button uk-button-default">Back</a> |
+	<a href="/admin/logout" class="uk-button uk-button-default">logout</a>
 <form method="post">
 	<table border="0">
 
 		<% for(var i=0; i< user.length; i++){ %>
 
 		<tr>
-			<td>Username</td>
-			<td><input type="text" name="username" value="<%=user[i].username%>"></td>
+			<input type="hidden" name="id" value="<%=user[i].course_id%>">
+			<td>Course Id</td>
+			<td><input type="text" class="uk-input" name="course_id" value="<%=user[i].course_id%>"></td>
 		</tr>
 		<tr>
-			<td>PASSWORD</td>
-			<td><input type="password" name="password" value="<%=user[i].password%>"></td>
+			<td>Course Name</td>
+			<td><input type="text" class="uk-input" name="course_name" value="<%=user[i].course_name%>"></td>
 		</tr>
-		
 		<tr>
-			<td></td>
-			<td><input type="submit" name="submit" value="Save"></td>
+			<td>Section</td>
+			<td><input type="text"  class="uk-input" name="section" value="<%=user[i].section%>"></td>
 		</tr>
 
+		<tr>
+			<td>Seats</td>
+			<td><input type="text" class="uk-input" name="seats" value="<%=user[i].seats%>"></td>
+		</tr>
+		<tr>
+			<td>Category</td>
+			<td><input type="text" class="uk-input" name="category" value="<%=user[i].category%>"></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td><input type="submit" class="uk-button uk-button-default" name="submit" value="Save"></td>
+		</tr>
 		<% } %>
 
 	</table>
+
+	</div>
 </form>
 </body>
 </html>
