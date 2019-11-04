@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>SECTIONS</title>
+</head>
+<body>
+	<h1>SECTIONS</h1>
+
+	<a href="/faculty">PROFILE</a> |
+	<a href="/logout">LOGOUT</a>
+
+<br><br>
+	<table border="1">
+		<tr>
+			
+			<td>COURSE ID</td>
+			<td>COURSE NAME</td>
+            <td>SECTION</td>
+            <td>CATERGORY</td>
+            <td>ACTION</td>
+		</tr>
+
+	<% for(var i=0; i< user.length; i++){ %>
+		<tr>
+			<td><%= user[i].course_id %></td>
+            <td><%= user[i].course_name %></td>
+            <td><%= user[i].section %></td>
+			<td><%= user[i].category %></td>
+			<td><a href="/faculty/view_students/<%= user[i].course_id %>"> VIEW STUDENTS </a> </td>
+		</tr>
+
+	<% } %>
+	</table>
+</body>
+</html>
