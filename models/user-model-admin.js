@@ -174,7 +174,7 @@ module.exports={
 	},
 
 	deleteFaculty : function(user_id, callback){
-		var sql = "DELETE FROM faculty WHERE id=?";
+		var sql = "DELETE FROM user WHERE id=?";
 		db.execute(sql,[user_id],  function(status){
 			callback(status);
 		});

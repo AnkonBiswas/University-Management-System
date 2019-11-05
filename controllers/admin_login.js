@@ -27,12 +27,12 @@ router.get('/', function(req, res){
 
 
 
-router.get('/login', function(req, res){
+// router.get('/login', function(req, res){
 
-	//req.session.un = null;
-	res.clearCookie('admin_id');
-	res.redirect('/admin/login/index');
-});
+// 	//req.session.un = null;
+// //	res.clearCookie('admin_id');
+// 	res.render('admin/login/index');
+// });
 
 router.get('/login', function(req, res){
 	res.render('admin/login/index');
@@ -434,6 +434,14 @@ router.get('/delete/:user_id', function(req, res){
 
 router.get('/dashboard', function(req, res){
 	res.render('admin/dashboard/index');
+});
+
+
+router.get('/logout', function(req, res){
+
+	//req.session.un = null;
+	res.clearCookie('admin_id');
+	res.redirect('login');
 });
 
 module.exports = router;
