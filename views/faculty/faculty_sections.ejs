@@ -15,7 +15,8 @@
 			
 			<td>COURSE ID</td>
 			<td>COURSE NAME</td>
-            <td>SECTION</td>
+			<td>SECTION</td>
+			<td>SCHEDULE</td>
             <td>CATERGORY</td>
             <td>ACTION</td>
 		</tr>
@@ -24,7 +25,8 @@
 		<tr>
 			<td><%= user[i].course_id %></td>
             <td><%= user[i].course_name %></td>
-            <td><%= user[i].section %></td>
+			<td><%= user[i].section %></td>
+			<td><%= user[i].schedule %></td>
 			<td><%= user[i].category %></td>
 			<td><a href="/faculty/view_students/<%= user[i].course_id %>"> VIEW STUDENTS </a> </td>
 		</tr>

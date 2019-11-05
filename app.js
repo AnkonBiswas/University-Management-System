@@ -6,6 +6,7 @@ var exSession  	= require('express-session');
 var cookieParser= require('cookie-parser');
 var expupload	= require('express-fileupload');
 var multer 		= require('multer');
+var notifier	= require('node-notifier');
 var home  		= require('./controllers/home');
 var user  		= require('./controllers/user');
 var login  		= require('./controllers/login');

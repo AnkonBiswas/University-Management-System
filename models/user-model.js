@@ -100,6 +100,20 @@ module.exports={
 			}
 		});
 	},
+	studentGradeReport :  function(std_id, callback){
+		var sql = "SELECT * FROM coursestudent, courses where coursestudent.course_id=courses.course_id and coursestudent.student_id=?";
+
+		db.getResults(sql,[std_id], function(results){
+
+			//console.log(course_id);
+			if(results){
+				callback(results);
+			}else{
+				callback([]);
+			}
+		});
+	},
+
 
 	changeGrade : function(user, callback){
 

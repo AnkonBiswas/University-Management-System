@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 04, 2019 at 08:23 PM
+-- Generation Time: Nov 05, 2019 at 06:21 AM
 -- Server version: 10.1.25-MariaDB
 -- PHP Version: 5.6.31
 
@@ -71,6 +71,7 @@ CREATE TABLE `courses` (
   `course_id` varchar(11) NOT NULL,
   `course_name` varchar(200) NOT NULL,
   `section` varchar(10) NOT NULL,
+  `schedule` varchar(200) NOT NULL,
   `seats` int(11) NOT NULL,
   `category` varchar(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -79,11 +80,11 @@ CREATE TABLE `courses` (
 -- Dumping data for table `courses`
 --
 
-INSERT INTO `courses` (`course_id`, `course_name`, `section`, `seats`, `category`) VALUES
-('ATP3_1', 'ADVANCED TOPIC IN PROGRAMMING 3', 'A', 30, 'CSE'),
-('OOP1_1', 'OBJECT ORIENTED PROGRAMMING 1(JAVA)', 'A', 40, 'CSE'),
-('ATP3_2', 'ADVANCED TOPIC IN PROGRAMMING', 'B', 30, 'CSE'),
-('TC_1', 'TELECOMMUNICATION ENGINEERING', 'A', 40, 'EEE');
+INSERT INTO `courses` (`course_id`, `course_name`, `section`, `schedule`, `seats`, `category`) VALUES
+('ATP3_1', 'ADVANCED TOPIC IN PROGRAMMING 3', 'A', 'MON 11AM-2PM | WED 12PM-2PM', 30, 'CSE'),
+('OOP1_1', 'OBJECT ORIENTED PROGRAMMING 1(JAVA)', 'A', 'MON 11AM-2PM | WED 12PM-2PM', 40, 'CSE'),
+('ATP3_2', 'ADVANCED TOPIC IN PROGRAMMING', 'B', 'MON 11AM-2PM | WED 12PM-2PM', 30, 'CSE'),
+('TC_1', 'TELECOMMUNICATION ENGINEERING', 'A', 'MON 11AM-2PM | WED 12PM-2PM', 40, 'EEE');
 
 -- --------------------------------------------------------
 
@@ -199,7 +200,7 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT for table `coursefaculty`
 --
 ALTER TABLE `coursefaculty`
-  MODIFY `cf_id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `cf_id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `coursestudent`
 --

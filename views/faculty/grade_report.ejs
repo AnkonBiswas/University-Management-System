@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>STUDENT LIST</title>
+</head>
+<body>
+	<h1>STUDENT LIST</h1>
+
+	<a href="/faculty">PROFILE</a> |
+	<a href="/logout">LOGOUT</a>
+
+<br><br>
+	<table border="1">
+		<tr>
+			<td>COURSE_ID</td>
+			<td>COURSE NAME</td>
+			<td>GRADE</td>
+		</tr>
+
+	<% for(var i=0; i< user.length; i++){ %>
+		<tr>
+            <td><%= user[i].course_id %></td>
+			<td><%= user[i].course_name %></td>
+			<td><%= user[i].grade %></td>
+		</tr>
+
+	<% } %>
+	</table>
+</body>
+</html>
