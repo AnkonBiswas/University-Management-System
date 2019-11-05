@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <h1>courses</h1>
 <table border="1">
     <tr>
@@ -19,4 +20,31 @@
     </tr>
 
 <% } %>
+=======
+<h1>COURSES</h1>
+
+<a href="/faculty">PROFILE</a> |
+<a href="/logout">LOGOUT</a>
+
+<table border="1">
+    <tr>
+        <td>COURSE ID</td>
+        <td>COURSE NAME</td>
+        <td>SECTION</td>
+        <td>ACTION</td>
+    </tr>
+
+<% for(var i=0; i< user.length; i++){ %>
+    <tr>
+        <td><%= user[i].course_id %></td>
+        <td><%= user[i].course_name %></td>
+        <td><%= user[i].section %></td>
+        <td>
+            <a href="/faculty/apply_course/<%= user[i].course_id %>"> APPLY FOR COURSE </a>
+            
+        </td>
+    </tr>
+
+<% } %>
+>>>>>>> master
 </table>
