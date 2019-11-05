@@ -4,6 +4,8 @@ var ejs  		= require('ejs');
 var bodyParse  	= require('body-parser');
 var exSession  	= require('express-session');
 var cookieParser= require('cookie-parser');
+var expupload	= require('express-fileupload');
+var multer 		= require('multer');
 var home  		= require('./controllers/home');
 var user  		= require('./controllers/user');
 var login  		= require('./controllers/login');
@@ -22,16 +24,21 @@ app.set('view engine', 'ejs');
 app.use(bodyParse.urlencoded({extended:false}));
 app.use(exSession({secret:"my top secret value", saveUninitialized:true, resave:false}));
 app.use(cookieParser());
+app.use(expupload());
 app.use('/home', home);
 app.use('/user', user);
 app.use('/login', login);
 app.use('/logout', logout);
 app.use('/register', register);
 app.use('/courses', courses);
+<<<<<<< HEAD
 app.use('/admin', admin_login);
 
 app.use('/courses', courses);
 
+=======
+app.use('/faculty', faculty);
+>>>>>>> master
 app.use(express.static(__dirname + '/public'));
 
 //ROUTING
