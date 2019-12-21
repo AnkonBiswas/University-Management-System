@@ -6,8 +6,13 @@
 <body>
 	<h1>VIEW MAILS </h1>
 
-	<a href="/faculty/profile">PROFILE</a> |
-	<a href="/faculty/mail">MAILS</a> | 
+<a href="{{route('faculty.profile')}}">Profile</a>
+<a href="{{route('faculty.allStudents')}}">Student List</a>
+<a href="{{route('faculty.allCourses')}}">Course List</a>
+<a href="{{route('faculty.facultyCourses')}}">Registered Courses</a>
+<a href="{{route('faculty.sentMail')}}">Mail Box</a>
+<br>
+<a href="{{route('faculty.mail')}}">Compose Mail</a>
 
 <br><br>
 

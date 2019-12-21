@@ -13,16 +13,22 @@
 
 <h1>Book List</h1>
 <div class="uk-container">
+<a href="{{route('faculty.profile')}}">Profile</a>
+<a href="{{route('faculty.allStudents')}}">Student List</a>
+<a href="{{route('faculty.allCourses')}}">Course List</a>
+<a href="{{route('faculty.facultyCourses')}}">Registered Courses</a>
+<a href="{{route('faculty.sentMail')}}">Mail Box</a>
 <table>
 
 
     <thead>
         <tr>
             <th>Id</th>
-            <th>Book Name</th>
-            <th>Author</th>
-            <th>Category</th>
-            <th>Price</th>
+            <th>User Name</th>
+            <th>Full Name</th>
+            <th>Gender</th>
+            <th>Contact</th>
+            <th>Action</th>
             
         </tr>
     </thead>
@@ -35,6 +41,7 @@
             <td>{{ $user->full_name }}</td>
             <td>{{ $user->gender }}</td>
             <td>{{ $user->contact }}</td>
+            <td><a href="/faculty/gradeReports/{{$user->id}}">Grade Report</a></td>
 
         </tr>
 

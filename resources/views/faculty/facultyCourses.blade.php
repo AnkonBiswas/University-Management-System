@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Book List</title>
+    <title>Course List</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="css/uikit.min.css" />
@@ -11,18 +11,23 @@
 </head>
 <body>
 
-<h1>Book List</h1>
+<h1>Course List</h1>
 <div class="uk-container">
+<a href="{{route('faculty.profile')}}">Profile</a>
+<a href="{{route('faculty.allStudents')}}">Student List</a>
+<a href="{{route('faculty.allCourses')}}">Course List</a>
+<a href="{{route('faculty.facultyCourses')}}">Registered Courses</a>
+<a href="{{route('faculty.sentMail')}}">Mail Box</a>
 <table>
 
 
     <thead>
         <tr>
             <th>Id</th>
-            <th>Book Name</th>
-            <th>Author</th>
+            <th>Course Name</th>
+            <th>Section</th>
+            <th>Seats</th>
             <th>Category</th>
-            <th>Price</th>
             <th>Action</th>
             
         </tr>

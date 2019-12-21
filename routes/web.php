@@ -37,3 +37,6 @@ Route::post('/faculty/uploadfile/{id}','facultyController@showUploadFile')->name
 Route::get('/faculty/mail', 'facultyController@mail')->name('faculty.mail');
 Route::post('/faculty/mail', 'facultyController@sendMail');
 Route::get('/faculty/sentMail', 'facultyController@sentMail')->name('faculty.sentMail');
+
+Route::get('/faculty/gradeReports/{id}', 'facultyController@gradeReports')->name('faculty.gradeReports');
+Route::get('/faculty/applyCourse/{id}', 'facultyController@applyCourse')->name('faculty.applyCourse');

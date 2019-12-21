@@ -38,8 +38,9 @@ class facultyController extends Controller
             return view('faculty.allCourses')->with('courses', $courses);
     }
 
-        function facultyCourses(){
-            $courses = DB::select('select courses.* from courseFacultys, courses where courseFacultys.course_id=courses.id and courseFacultys.faculty_id=(SELECT id FROM users where id=?)', [4]);
+        function facultyCourses(Request $request){
+            $uid=$request->session()->get('uid');
+            $courses = DB::select('select courses.* from courseFacultys, courses where courseFacultys.course_id=courses.id and courseFacultys.faculty_id=(SELECT id FROM users where id=?)', [$uid]);
             return view('faculty.facultyCourses')->with('courses', $courses);
         }
 
@@ -125,4 +126,19 @@ class facultyController extends Controller
                                                 ->get();
         return view('faculty.sentMails')->with('mails', $mails);
       }
+      function gradeReports($id){
+        $courses = DB::select('SELECT * FROM courses c, coursestudents cs WHERE c.id=cs.course_id and cs.student_id=?', [$id]);
+        return view('faculty.gradeReport')->with('courses',$courses);
+     }
+
+     function applyCourse(Request $request,$id){
+        DB::table('coursefacultys')->insert([
+            'faculty_id' => $request->session()->get('uid'),
+            'course_id' => $id
+        ]);
+        return redirect()->route('faculty.facultyCourses');
+        
+     }
 }
+
+     

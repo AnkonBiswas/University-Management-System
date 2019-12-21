@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Student List</title>
+    <title>Grade Report</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="css/uikit.min.css" />
@@ -11,7 +11,7 @@
 </head>
 <body>
 
-<h1>Student List</h1>
+<h1>Grade Report</h1>
 <div class="uk-container">
 <a href="{{route('faculty.profile')}}">Profile</a>
 <a href="{{route('faculty.allStudents')}}">Student List</a>
@@ -23,24 +23,21 @@
 
     <thead>
         <tr>
-            <th>Id</th>
-            <th>User Name</th>
-            <th>Full Name</th>
+            <th>Course Id</th>
+            <th>Course Name</th>
+            <th>Section</th>
             <th>Grade</th>
-            <th>Action</th>
             
         </tr>
     </thead>
     <tbody>
-                  @foreach($users as $user)
+                  @foreach($courses as $course)
 
         <tr >
-            <td>{{ $user->id }}</td>
-            <td>{{ $user->username }}</td>
-            <td>{{ $user->full_name }}</td>
-            <td>{{ $user->grade }}</td>
-            <td><a href="/faculty/changeGrade/{{$user->cs_id}}">Change grade</a></td>
-
+            <td>{{ $course->id }}</td>
+            <td>{{ $course->course_name }}</td>
+            <td>{{ $course->section }}</td>
+            <td>{{ $course->grade }}</td>
         </tr>
 
           @endforeach

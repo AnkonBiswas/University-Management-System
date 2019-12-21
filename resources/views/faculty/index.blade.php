@@ -8,7 +8,11 @@
 	<h1>Profile</h1>
     
 <br><br>
-
+<a href="{{route('faculty.profile')}}">Profile</a>
+<a href="{{route('faculty.allStudents')}}">Student List</a>
+<a href="{{route('faculty.allCourses')}}">Course List</a>
+<a href="{{route('faculty.facultyCourses')}}">Registered Courses</a>
+<a href="{{route('faculty.sentMail')}}">Mail Box</a>
 	<table border="0">
 		
 		<tr>
